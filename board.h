@@ -7,7 +7,7 @@ Plansza ver. 0.1
 #include <stdio.h>
 #include <stdbool.h>
 
-int board[5][5];
+static int board[5][5];
 
 const int win[28][4][2] = { 
   { {0,0}, {0,1}, {0,2}, {0,3} },
@@ -63,7 +63,7 @@ void setBoard()
 {
   for(int i=0; i<5; i++)
     for(int j=0; j<5; j++)
-      board[i][j]=0;
+        board[i][j]=0;
 }
 
 void printBoard()
@@ -88,8 +88,8 @@ bool setMove(int move, int player)
   i = (move/10)-1;
   j = (move%10)-1;
   if( (i<0) || (i>4) || (j<0) || (j>4) ) return false; 
-  if( board[i][j]!=0 ) return false;
-  board[i][j] = player;
+  if(board[i][j] != 0 ) return false;
+    board[i][j] = player;
   return true;
 }
 
@@ -97,7 +97,7 @@ bool winCheck(int player)
 {
   bool w=false;
   for(int i=0; i<28; i++)
-    if( (board[win[i][0][0]][win[i][0][1]]==player) && (board[win[i][1][0]][win[i][1][1]]==player) && (board[win[i][2][0]][win[i][2][1]]==player) && (board[win[i][3][0]][win[i][3][1]]==player) )
+    if((board[win[i][0][0]][win[i][0][1]] == player) && (board[win[i][1][0]][win[i][1][1]] == player) && (board[win[i][2][0]][win[i][2][1]] == player) && (board[win[i][3][0]][win[i][3][1]] == player) )
       w=true;
   return w;
 }
@@ -106,7 +106,25 @@ bool loseCheck(int player)
 {
   bool l=false;
   for(int i=0; i<48; i++)
-    if( (board[lose[i][0][0]][lose[i][0][1]]==player) && (board[lose[i][1][0]][lose[i][1][1]]==player) && (board[lose[i][2][0]][lose[i][2][1]]==player) )
+    if((board[lose[i][0][0]][lose[i][0][1]] == player) && (board[lose[i][1][0]][lose[i][1][1]] == player) && (board[lose[i][2][0]][lose[i][2][1]] == player) )
       l=true;
   return l;
+}
+
+bool dummyWinCheck(const int32_t dummyBoard[5][5], int player)
+{
+    bool w=false;
+    for(int i=0; i<28; i++)
+        if((dummyBoard[win[i][0][0]][win[i][0][1]] == player) && (dummyBoard[win[i][1][0]][win[i][1][1]] == player) && (dummyBoard[win[i][2][0]][win[i][2][1]] == player) && (dummyBoard[win[i][3][0]][win[i][3][1]] == player) )
+            w=true;
+    return w;
+}
+
+bool dummyLoseCheck(const int32_t dummyBoard[5][5], int player)
+{
+    bool l=false;
+    for(int i=0; i<48; i++)
+        if((dummyBoard[lose[i][0][0]][lose[i][0][1]] == player) && (dummyBoard[lose[i][1][0]][lose[i][1][1]] == player) && (dummyBoard[lose[i][2][0]][lose[i][2][1]] == player) )
+            l=true;
+    return l;
 }
