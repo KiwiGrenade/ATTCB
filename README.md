@@ -1,1 +1,4 @@
-# Jakub Jaśków - 268416 - WSI - L2
+# ATTCB - Altered Tic Tac Toe Bot
+
+
+WSI - L2
