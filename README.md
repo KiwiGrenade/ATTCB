@@ -1,4 +1,4 @@
-# ATTCB - Altered Tic Tac Toe Bot
+# ATTTB - Altered Tic Tac Toe Bot
 
 
 WSI - L2
